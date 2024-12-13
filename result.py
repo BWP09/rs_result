@@ -82,6 +82,14 @@ class UnwrapError[T1, E1](Exception):
 
 class Check:
     @staticmethod
+    def is_ok[T2, E2](result: Result[T2, E2]) -> typing.TypeGuard[Ok[T2]]:
+        return result.is_ok()
+    
+    @staticmethod
+    def is_err[T2, E2](result: Result[T2, E2]) -> typing.TypeGuard[Err[E2]]:
+        return result.is_err()
+
+    @staticmethod
     def any_ok[T2, E2](iter_: typing.Iterable[Result[T2, E2]]) -> bool:
         def check(x: Result[T2, E2]) -> bool:
             return x.is_ok()
