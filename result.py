@@ -33,7 +33,10 @@ class Ok[T1]:
     
     def expect_err_or[U](self, default: U) -> U:
         return default
-
+    
+    def propagate(self) -> "Ok[T1]":
+        return Ok[T1](self.ok())
+    
 class Err[E1]:
     def __init__(self, value: E1) -> None:
         self._value = value
